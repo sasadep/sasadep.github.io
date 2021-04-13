@@ -121,10 +121,44 @@
         <h3 > Research paper / Hackathons / Academic Projects</h3>
           <div class = "Projects_para ">
 
+                <li><b>Intel nGraph: An Intermediate Representation, Compiler, and Executor for Deep Learning:<br></li>
+                <p>SYSML 2018 <a href="https://arxiv.org/abs/1801.08058">link </a></b> <br>
+                  The Deep Learning (DL) community sees many novel topologies published each year. Achieving high performance on each new
+                  topology remains challenging, as each requires some level of manual effort. This issue is compounded by the
+                  proliferation of frameworks and hardware platforms. The current approach, which we call "direct optimization", requires
+                  deep changes within each framework to improve the training performance for each hardware backend (CPUs, GPUs, FPGAs,
+                  ASICs) and requires O(fp) effort; where f is the number of frameworks and p is the number of platforms. While optimized
+                  kernels for deep-learning primitives are provided via libraries like Intel Math Kernel Library for Deep Neural Networks
+                  (MKL-DNN), there are several compiler-inspired ways in which performance can be further optimized. Building on our
+                  experience creating neon (a fast deep learning library on GPUs), we developed Intel nGraph, a soon to be open-sourced
+                  C++ library to simplify the realization of optimized deep learning performance across frameworks and hardware platforms.
+                  Initially-supported frameworks include TensorFlow, MXNet, and Intel neon framework. Initial backends are Intel
+                  Architecture CPUs (CPU), the Intel(R) Nervana Neural Network Processor(R) (NNP), and NVIDIA GPUs. Currently supported
+                  compiler optimizations include efficient memory management and data layout abstraction. In this paper, we describe our
+                  overall architecture and its core components. In the future, we envision extending nGraph API support to a wider range
+                  of frameworks, hardware (including FPGAs and ASICs), and compiler optimizations (training versus inference
+                  optimizations, multi-node and multi-device scaling via efficient sub-graph partitioning, and HW-specific compounding of
+                  operations).
+                  <br>
+                </p><br>
+
                 <li><b>An Artificial Neural Networks based Temperature Prediction Framework for Network-on-Chip based Multicore Platform:<br></li>
                 <p>Thesis <a href="https://arxiv.org/abs/1612.04197">link </a></b> <br>
-                Continuous improvement in silicon process technologies has made possible the integration of hundreds of cores on a single chip. However, power and heat have become dominant constraints in designing these massive multicore chips causing issues with reliability, timing variations and reduced lifetime of the chips. Dynamic Thermal Management (DTM) is a solution to avoid high temperatures on the die. Typical DTM schemes only address core level thermal issues. However, the Network-on-chip (NoC) paradigm, which has emerged as an enabling methodology for integrating hundreds to thousands of cores on the same die can contribute significantly to the thermal issues. Moreover, the typical DTM is triggered reactively based on temperature measurements from on-chip thermal sensor requiring long reaction times whereas predictive DTM method estimates future temperature in advance, eliminating the chance of temperature overshoot. Artificial Neural Networks (ANNs) have been used in various domains for modeling and prediction with high accuracy due to its ability to learn and adapt. This thesis concentrates on designing an ANN prediction engine to predict the thermal profile of the cores and Network-on-Chip elements of the chip. This thermal profile of the chip is then used by the predictive DTM that combines both core level and network level DTM techniques. On-chip wireless interconnect which is recently envisioned to enable energy-efficient data exchange between cores in a multicore environment, will be used to provide a broadcast-capable medium to efficiently distribute thermal control messages to trigger and manage the DTM schemes.
-                <br></p><br>
+                Continuous improvement in silicon process technologies has made possible the integration of hundreds of cores on a
+                single chip. However, power and heat have become dominant constraints in designing these massive multicore chips causing
+                issues with reliability, timing variations and reduced lifetime of the chips. Dynamic Thermal Management (DTM) is a
+                solution to avoid high temperatures on the die. Typical DTM schemes only address core level thermal issues. However, the
+                Network-on-chip (NoC) paradigm, which has emerged as an enabling methodology for integrating hundreds to thousands of
+                cores on the same die can contribute significantly to the thermal issues. Moreover, the typical DTM is triggered
+                reactively based on temperature measurements from on-chip thermal sensor requiring long reaction times whereas
+                predictive DTM method estimates future temperature in advance, eliminating the chance of temperature overshoot.
+                Artificial Neural Networks (ANNs) have been used in various domains for modeling and prediction with high accuracy due
+                to its ability to learn and adapt. This thesis concentrates on designing an ANN prediction engine to predict the thermal
+                profile of the cores and Network-on-Chip elements of the chip. This thermal profile of the chip is then used by the
+                predictive DTM that combines both core level and network level DTM techniques. On-chip wireless interconnect which is
+                recently envisioned to enable energy-efficient data exchange between cores in a multicore environment, will be used to
+                provide a broadcast-capable medium to efficiently distribute thermal control messages to trigger and manage the DTM
+                schemes.<br></p><br>
 
                 <li><b>OhSnap @HackPrinceton-2015 | Princeton University:</b><br></li>
                 <p>Identification of human finger snaps. Feature exaction using Cepstrum. Random Forest and PCA is used for training on the recorded data. Coding in Python.
