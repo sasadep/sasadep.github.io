@@ -15,6 +15,33 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
+<script>
+$(document).ready(function() {
+    // Close mobile menu when clicking on internal links
+    $('.navbar-nav a[href^="#"]').on('click', function() {
+        if ($('.navbar-toggle').is(':visible')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+    
+    // Close mobile menu when clicking outside
+    $(document).on('click', function(event) {
+        var clickover = $(event.target);
+        var _opened = $('.navbar-collapse').hasClass('in');
+        if (_opened === true && !clickover.hasClass('navbar-toggle') && clickover.parents('.navbar').length === 0) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+    
+    // Close mobile menu when scrolling
+    $(window).on('scroll', function() {
+        if ($('.navbar-toggle').is(':visible') && $('.navbar-collapse').hasClass('in')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+});
+</script>
+
 
 
   <body style="overflow:hidden; margin:0; overflow-y:scroll;" >
@@ -35,11 +62,11 @@
 					        </div>
 					        <div class="collapse navbar-collapse navbar-menubuilder">
 					            <ul class="nav navbar-nav navbar-right">
-					                <li><a href="#Bio"><b>Bio</b></a></li>
-                          <li><a href="#Experiences"><b>Experiences</b></a></li>
-					                <li><a href="#Projects"><b>Projects</b></a></li>
+					                <li><a href="#Bio" data-toggle="collapse" data-target=".navbar-collapse"><b>Bio</b></a></li>
+                          <li><a href="#Experiences" data-toggle="collapse" data-target=".navbar-collapse"><b>Experiences</b></a></li>
+					                <li><a href="#Projects" data-toggle="collapse" data-target=".navbar-collapse"><b>Projects</b></a></li>
 					                <li><a href="mailto:sa5641.rit@gmail.com" target="_blank"><b>Resume</b></a></li>
-                          <li><a href="#contact"><b>contact</b></a></li>
+                          <li><a href="#contact" data-toggle="collapse" data-target=".navbar-collapse"><b>Contact</b></a></li>
 					            </ul>
 					        </div>
 
@@ -64,56 +91,153 @@
       <div class = "Bio_data_para">
         <h3 > Bio </h3>
           <p> 
-            I am a Software Engineer at Intel, currently focused on Deep Learning Performance R&D.
-            I recieved my Master's in Electrical Engineering from Rochester Institute of Technology in 2016, where I was advised by
+            I am a AI Software Architect at Intel, currently focused on full stack AI Software and Performance R&D.
+            I received my Master's in Electrical Engineering from Rochester Institute of Technology in 2016, where I was advised by
             <a href="https://people.rit.edu/axgeec/index.htm">Amlan Ganguly </a> and <a href="http://www.ptucha.com/">Ray Ptucha </a>
             on Multi-Core Systems with NoC Architectures and Deep Learning. Over the course of my Master's I had an internship at Intel,
             where I worked on creating high performance Deep Learning models for Intel Atom based SoC.
-            I recieved my Bachelor's degree in Electronics and Communication Engineering form Visvesvaraya Technological University, India in 2012.
+            I received my Bachelor's degree in Electronics and Communication Engineering from Visvesvaraya Technological University, India in 2012.
             <br><br>I enjoy doing Interdisciplinary Research, and  attending Hackathons. I am a Neuroscience, Physics, and Hardware Architecture enthusiast.
           </p>
-          <a href ="#home"> <b>home</b> </a>
+          <a href="#home" class="home-button" title="Home"><i class="fa fa-home"></i></a>
       </div>
     </div>
 
       <div class = "Experiences" id = "Experiences" >
           <div class = "Experiences_para">
             <h3 > Experiences </h3>
-              
-              <li><b>Intel Corporation : <br></li>
-              <p><i>Engineer </i> (Mar 2016 - date )</b><br>
-              <ul style="list-style-type:square">
-                <li><i>Technologies</i><br></li></p>
-                <p>• Machine Learning Algorithms, and Deep Learning Data Science for Computer vision<br></p>
-                <p>• Deep Learning Software and Computer Architecture<br></p>
-                <p>• Hybrid computing (Distributed + Heterogeneous)</b> <br></p>
-                
-                <li><i>Products</i><br></li></p>
-                <p>• Deep Learning Software Architecture - Intel Movidius Next-Gen AI Product</i><br>
-                <i>Mar 2019 – Present</i></p>
-                <p>• Deep Learning Graph Compiler nGraph - Intel Nervana NNP-Training</i><br>
-                <i>Sep 2017 – Mar 2019</i></p>
-                <p>• Computer Vision and Deep Learning - Intel Atom+FPGA+iGPU<br>
-                <i>Mar 2016 – Sep 2017</i></b> <br><br></p>
-              </ul>
+            
+            <div class="main-timeline">
+              <!-- Intel Corporation Current Role -->
+              <div class="main-timeline-item">
+                <div class="main-timeline-date">Mar 2016 - Present</div>
+                <div class="main-timeline-content">
+                  <h4><b>Intel Corporation</b></h4>
+                  <p><i>Engineer</i></p>
+                  
+                  <!-- Technologies Section -->
+                  <div class="sub-timeline-section">
+                    <h5><i>Technologies</i></h5>
+                    <div class="tech-list">
+                      <p>• Deep Learning Software and Computer Architecture</p>
+                      <p>• Machine Learning Algorithms, and Deep Learning Data Science for Computer vision</p>
+                      <p>• Hybrid computing (Distributed + Heterogeneous)</p>
+                    </div>
+                  </div>
+                  
+                  <!-- Products Timeline -->
+                  <div class="sub-timeline-section">
+                    <h5><i>Products Timeline</i></h5>
+                    <div class="sub-timeline">
+                      <div class="sub-timeline-item">
+                        <div class="sub-timeline-date">Mar 2019 – Present</div>
+                        <div class="sub-timeline-content">
+                          <h6>Deep Learning Software Architecture</h6>
+                          <p>Intel NPU (Formerly Intel Movidius)- Next-Gen AI Product</p>
+                          <div class="timeline-subsection">
+                            <div class="subsection-item">
+                              <span class="subsection-title">Products Released/Public:</span>
+                              <div class="sub-sub-timeline">
+                                <div class="sub-sub-timeline-item">
+                                  <div class="sub-sub-timeline-date">2019</div>
+                                  <div class="sub-sub-timeline-content">
+                                    <span class="sub-sub-timeline-title">Keembay</span>
+                                  </div>
+                                </div>
+                                <div class="sub-sub-timeline-item">
+                                  <div class="sub-sub-timeline-date">2023</div>
+                                  <div class="sub-sub-timeline-content">
+                                    <span class="sub-sub-timeline-title">NPU2.7 in Meteor Lake</span>
+                                  </div>
+                                </div>
+                                <div class="sub-sub-timeline-item">
+                                  <div class="sub-sub-timeline-date">2024</div>
+                                  <div class="sub-sub-timeline-content">
+                                    <span class="sub-sub-timeline-title">NPU4 in Lunar Lake</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="sub-timeline-item">
+                        <div class="sub-timeline-date">Sep 2017 – Mar 2019</div>
+                        <div class="sub-timeline-content">
+                          <h6>Deep Learning Graph Compiler nGraph</h6>
+                          <p>Intel Nervana NNP-Training</p>
+                        </div>
+                      </div>
+                      
+                      <div class="sub-timeline-item">
+                        <div class="sub-timeline-date">Mar 2016 – Sep 2017</div>
+                        <div class="sub-timeline-content">
+                          <h6>Computer Vision and Deep Learning</h6>
+                          <p>Intel Atom+FPGA+iGPU</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <li><b>Intel Corporation (Hillsboro, OR): <br></li>
-              <p><i>Software Engineer Intern</i> (Oct 2015- Dec 2015 )</b><br>
-              Performance analysis and optimization of machine learning algorithms (Deep Learning) for Computer Vision and Mobile Application. In Torch,OpenCV and TensorFlow.</p><br>
+              <!-- Intel Corporation Internship -->
+              <div class="main-timeline-item">
+                <div class="main-timeline-date">Oct 2015 - Dec 2015</div>
+                <div class="main-timeline-content">
+                  <h4><b>Intel Corporation (Hillsboro, OR)</b></h4>
+                  <p><i>Software Engineer Intern</i></p>
+                  <div class="timeline-description">
+                    <p>Performance analysis and optimization of machine learning algorithms (Deep Learning) for Computer Vision and Mobile Application. In Torch, OpenCV and TensorFlow.</p>
+                  </div>
+                </div>
+              </div>
 
-              <li><b>Rochester Institute of Technology(Rochester, NY): <br></li>
-              <p><i>Research Assistant </i><br>
-              @Multi-Core System Lab | (Aug 2014 - Mar 2016)</b> <br>
-              Improving thermal performance of multi-core network-on-chip based architectures through a distributed and intelligent proactive thermal-aware task reallocation algorithm. Optimized for faster computation training time of Neural Network.<br>
+              <!-- Rochester Institute of Technology -->
+              <div class="main-timeline-item">
+                <div class="main-timeline-date">Aug 2014 - Mar 2016</div>
+                <div class="main-timeline-content">
+                  <h4><b>Rochester Institute of Technology (Rochester, NY)</b></h4>
+                  <p><i>Research Assistant</i></p>
+                  
+                  <!-- Sub-timeline for different labs -->
+                  <div class="sub-timeline-section">
+                    <div class="sub-timeline">
+                      <div class="sub-timeline-item">
+                        <div class="sub-timeline-date">Aug 2014 - Mar 2016</div>
+                        <div class="sub-timeline-content">
+                          <h6><b>@Multi-Core System Lab</b></h6>
+                          <p>Improving thermal performance of multi-core network-on-chip based architectures through a distributed and intelligent proactive thermal-aware task reallocation algorithm. Optimized for faster computation training time of Neural Network.</p>
+                        </div>
+                      </div>
+                      
+                      <div class="sub-timeline-item">
+                        <div class="sub-timeline-date">May 2015 – Oct 2015</div>
+                        <div class="sub-timeline-content">
+                          <h6><b>@Machine Intelligence Lab</b></h6>
+                          <p>Developing improved scheme for video classification by going deeper using convolutional neural network for better accuracy and computational time.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-              <b>@Machine Intelligence Lab | (May 2015 – Oct 2015)</b> <br>
-              Developing improved scheme for video classification by going deeper using convolutional neural network for better accuracy and computational time.</b><br><br>
-
-              <li><b>Hindustan Aeronautics Limited (Bangalore, India): <br></li>
-              <p><i>Apprentice Engineer</i> (Aug 2012- May 2013 )</b><br>
-              Worked on data analysis of Solid State Digital Video Recording system and Electronic<br> Flight instrument system
-              for fault detection and integration of the system.</p>
-              <a href ="#home"> <b>home</b> </a>
+              <!-- Hindustan Aeronautics Limited -->
+              <div class="main-timeline-item">
+                <div class="main-timeline-date">Aug 2012 - May 2013</div>
+                <div class="main-timeline-content">
+                  <h4><b>Hindustan Aeronautics Limited (Bangalore, India)</b></h4>
+                  <p><i>Apprentice Engineer</i></p>
+                  <div class="timeline-description">
+                    <p>Worked on data analysis of Solid State Digital Video Recording system and Electronic Flight instrument system for fault detection and integration of the system.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <a href="#home" class="home-button" title="Home"><i class="fa fa-home"></i></a>
           </div>
         </div>
 
@@ -161,7 +285,7 @@
                 schemes.<br></p><br>
 
                 <li><b>OhSnap @HackPrinceton-2015 | Princeton University:</b><br></li>
-                <p>Identification of human finger snaps. Feature exaction using Cepstrum. Random Forest and PCA is used for training on the recorded data. Coding in Python.
+                <p>Identification of human finger snaps. Feature extraction using Cepstrum. Random Forest and PCA is used for training on the recorded data. Coding in Python.
                   <br></p>
                   <p align="30"><iframe width="50%" height="100%"
                   src="https://www.youtube.com/embed/EuO8wyZtxaE">
@@ -218,7 +342,7 @@
                   <li><b>Deep Learning for Image Classification  - 2013 :</b> <br></li>
                   <p>Deep Neural Networks with feature extraction was implemented for image classification on "calTech101" dataset. <br></p><br>
 
-                <a href ="#home"> <b>home</b> </a>
+                <a href="#home" class="home-button" title="Home"><i class="fa fa-home"></i></a>
 
           </div>
         </div>
@@ -271,9 +395,9 @@ background-image: url("M&T_bank_pic1.jpg");
 }
 .Heading_San h1 {
   font-family: 'Cormorant Upright';
-  color: #0F1728 !important ;
+  color: #212529 !important ;
 
-  background-color: #ff5a09;
+  background-color: #495057;
   margin-top: 30px;
   margin-right: 800px;
   font-weight: bold;
@@ -287,9 +411,9 @@ font-size: 20px;
 }
 .navbar-title {
 	font-family: 'Cormorant Upright';
-  color: #0F1728 !important ;
+  color: #f8f9fa !important ;
 
-  background-color: #ff5a09;
+  background-color: #495057;
   font-size: 23px;
  /* margin-top: 30px;
   margin-right: 800px;*/
@@ -325,7 +449,7 @@ font-size: 20px;
 .hr {
     width: 100%;
     text-align: center;
-    border-bottom: 1px solid #FF5600;
+    border-bottom: 1px solid #495057;
     line-height: 0;
     margin-top: -7%;
     margin-bottom: 3%;
@@ -339,7 +463,7 @@ font-size: 20px;
 }
 
 .bg-gray {
-    background-color: #EEE;
+    background-color: #e9ecef;
 }
 
 @media (max-width: 768px) {
@@ -361,7 +485,7 @@ font-size: 20px;
 }
 
 .section-header-orange {
-    border-top: 1px solid #FF5600;
+    border-top: 1px solid #495057;
 }
 
 #Projects-title {
@@ -370,7 +494,7 @@ font-size: 20px;
     padding-left: 1%;
     padding-right: 1%;
     background-color: #FFF;
-    color: #555;
+    color: #495057;
 }
 
 #Projects-info-div {
@@ -394,20 +518,20 @@ font-size: 20px;
 
 .github-link-icon {
     font-size: 2em;
-    color: #444;
+    color: #343a40;
 }
 
 .github-link-icon-sm {
-    color: #444;
+    color: #343a40;
     font-size: 1.5em;
 }
 
 .twitter-link-icon {
     font-size: 2em;
-    color: #444;
+    color: #343a40;
 }
 .twitter-link-icon-sm {
-    color: #444;
+    color: #343a40;
     font-size: 1.5em;
 }
 
@@ -417,7 +541,7 @@ font-size: 20px;
     padding-left: 1%;
     padding-right: 1%;
     background-color: #FFF;
-    color: #555;
+    color: #495057;
     font-family: 'Cormorant Upright';
 }
 
@@ -436,16 +560,16 @@ blockquote > footer {
 
 #footer_content {
     margin-top: 5%;
-    background-color: #EEE;
+    background-color: #e9ecef;
     padding-top: 3%;
     padding-bottom: 3%;
-    color: #888;
+    color: #adb5bd;
     font-size: 90%;
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid #e9ecef;
 }
 
 #footer_content > p > a {
-    color: #888;
+    color: #adb5bd;
 }
 
 .dot-span {
@@ -459,7 +583,7 @@ blockquote > footer {
 }
 
  .contact-link {
-    color: #666;
+    color: #6c757d;
 }
 
 .big-dot {
@@ -467,27 +591,77 @@ blockquote > footer {
     font-weight: bold;
 }
 
+/* Home Button Styling */
+.home-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #495057;
+    color: #ffffff !important;
+    padding: 8px;
+    border-radius: 50%;
+    text-decoration: none;
+    font-family: 'Cormorant Upright';
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(73, 80, 87, 0.3);
+    border: 1px solid #495057;
+    width: 35px;
+    height: 35px;
+}
+
+.home-button:hover {
+    background-color: #FFF;
+    color: #495057 !important;
+    border: 1px solid #495057;
+    text-decoration: none;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(73, 80, 87, 0.4);
+}
+
+.home-button:focus {
+    outline: none;
+    text-decoration: none;
+    color: #ffffff !important;
+}
+
+.home-button:visited {
+    color: #ffffff !important;
+}
+
+.home-button:active {
+    color: #ffffff !important;
+}
+
+.home-button i {
+    margin: 0 !important;
+    font-size: 16px !important;
+    line-height: 1;
+}
+
 
 
 .Heading_San.navbar-RIT {
   font-family: 'Cormorant Upright';
-  color: #ff5a09;
+  color: #495057;
   /*margin-left: 40px;*/
   font-size: 23px;
   font-weight: bold;
   /*margin-right: 500px;*/
-  background-color: #393939;
+  background-color: #343a40;
   background-repeat: no-repeat;
 
 }
 
 .Bio_data  .Bio_data_para h3 {
 
-  background-color: #ff5a09;
+  background-color: #495057;
   margin-top: 40px;
   margin-left: 50px;
   font-size: 30px;
-  color: #0F1728 !important
+  color: #f8f9fa !important
 
 
 }
@@ -495,11 +669,11 @@ blockquote > footer {
   margin-top: 50px;
 font-family: 'Cormorant Upright';
 background-color: #FFF;
-color: #555;
+color: #495057;
 }
 .Bio_data .Bio_data_para p{
 font-size: 20px;
-color:#444;
+color:#343a40;
 margin-left: 50px;
 	}
 .Bio_data .Bio_data_para  a {
@@ -511,7 +685,7 @@ margin-left: 50px;
 .Projects {
  font-family: 'Cormorant Upright';
  background-color: #FFF;
- color: #555;
+ color: #495057;
 
 }
 .Projects h3{
@@ -519,26 +693,26 @@ margin-left: 50px;
 	margin-top: 60px;
   margin-left: 50px;
  font-family: 'Cormorant Upright';
- background-color: #ff5a09;
- color: #0F1728 !important
+ background-color: #495057;
+ color: #f8f9fa !important
 
 }
 .Projects .Projects_para li {
 margin-left: 50px;
 font-size: 25px;
-	color:#ff5a09;
+	color:#495057;
 
 }
 .Projects .Projects_para ul {
 margin-left: 50px;
 font-size: 20px;
-	color:#444;
+	color:#343a40;
 
 }
 .Projects .Projects_para p {
 margin-left: 70px;
 background-color: #FFF;
-color: #444;
+color: #343a40;
 font-size: 20px;
 
 }
@@ -550,29 +724,29 @@ font-size: 20px;
 
 .Experiences  .Experiences_para h3 {
 
-  background-color: #ff5a09;
+  background-color: #495057;
   margin-top: 40px;
   margin-left: 50px;
   font-size: 30px;
-  color: #0F1728 !important
+  color: #f8f9fa !important
 
 }
 .Experiences{
 font-family: 'Cormorant Upright';
 background-color: #FFF;
-color: #555;
+color: #495057;
 }
 .Experiences  .Experiences_para p{
 font-size: 20px;
 background-color: #FFF;
-color: #444;
+color: #343a40;
 margin-left: 50px;
 	}
 
 .Experiences .Experiences_para li {
 margin-left: 50px;
 font-size: 25px;
-	color:#ff5a09;
+	color:#495057;
 
 }
 
@@ -580,6 +754,373 @@ font-size: 25px;
 background-color: #FFF;
 font-size: 20px;
 
+}
+
+/* Timeline Styles */
+.timeline {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 30px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #495057;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 40px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #495057;
+  border: 2px solid #FFF;
+  box-shadow: 0 0 0 2px #495057;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+  color: #343a40;
+  margin: 5px 0;
+  font-size: 18px;
+}
+
+.timeline-content p {
+  color: #6c757d;
+  margin: 5px 0 10px 0;
+  font-style: italic;
+}
+
+.timeline-subsection {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-left: 3px solid #495057;
+  border-radius: 3px;
+}
+
+.subsection-item {
+  margin-bottom: 10px;
+}
+
+.subsection-title {
+  font-weight: bold;
+  color: #212529;
+}
+
+.timeline-subsection ul {
+  margin: 5px 0 0 15px;
+  padding: 0;
+}
+
+.timeline-subsection li {
+  color: #495057;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
+
+/* Main Timeline Styles */
+.main-timeline {
+  position: relative;
+  margin: 30px 0;
+  padding-left: 40px;
+  margin-left: 50px;
+}
+
+.main-timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #495057;
+  border-radius: 2px;
+}
+
+.main-timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+  padding-left: 50px;
+  padding-bottom: 20px;
+}
+
+.main-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: 8px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #495057;
+  border: 3px solid #FFF;
+  box-shadow: 0 0 0 3px #495057;
+  z-index: 2;
+}
+
+.main-timeline-date {
+  font-weight: bold;
+  color: #495057;
+  font-size: 16px;
+  margin-bottom: 8px;
+  font-family: 'Cormorant Upright';
+}
+
+.main-timeline-content h4 {
+  color: #495057;
+  margin: 8px 0;
+  font-size: 25px;
+  font-family: 'Cormorant Upright';
+  font-weight: bold;
+}
+
+.main-timeline-content > p {
+  color: #343a40;
+  margin: 5px 0 15px 0;
+  font-size: 20px;
+  font-style: italic;
+}
+
+.timeline-description p {
+  color: #343a40;
+  font-size: 20px;
+  margin: 10px 0;
+  line-height: 1.5;
+}
+
+/* Sub-timeline Section */
+.sub-timeline-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.sub-timeline-section h5 {
+  color: #495057;
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-family: 'Cormorant Upright';
+  font-weight: bold;
+}
+
+.tech-list p {
+  color: #343a40;
+  font-size: 18px;
+  margin: 8px 0;
+  margin-left: 20px;
+}
+
+/* Sub-timeline Styles */
+.sub-timeline {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 30px;
+  margin-left: 20px;
+}
+
+.sub-timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #ced4da;
+  border-radius: 1px;
+}
+
+.sub-timeline-item {
+  position: relative;
+  margin-bottom: 25px;
+  padding-left: 35px;
+}
+
+.sub-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -7px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #495057;
+  border: 2px solid #FFF;
+  box-shadow: 0 0 0 2px #ced4da;
+}
+
+.sub-timeline-date {
+  font-weight: bold;
+  color: #6c757d;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.sub-timeline-content h6 {
+  color: #343a40;
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.sub-timeline-content p {
+  color: #495057;
+  margin: 5px 0 10px 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+/* Enhanced subsection styling for sub-timelines */
+.sub-timeline .timeline-subsection {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-left: 2px solid #495057;
+  border-radius: 3px;
+}
+
+.sub-timeline .subsection-title {
+  font-weight: bold;
+  color: #495057;
+  font-size: 14px;
+}
+
+.sub-timeline .timeline-subsection ul {
+  margin: 5px 0 0 15px;
+  padding: 0;
+}
+
+.sub-timeline .timeline-subsection li {
+  color: #6c757d;
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+/* Sub-sub-timeline Styles (for nested products) */
+.sub-sub-timeline {
+  position: relative;
+  margin: 10px 0;
+  padding-left: 20px;
+}
+
+.sub-sub-timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #dee2e6;
+}
+
+.sub-sub-timeline-item {
+  position: relative;
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.sub-sub-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 3px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #495057;
+  border: 1px solid #FFF;
+  box-shadow: 0 0 0 1px #dee2e6;
+}
+
+.sub-sub-timeline-date {
+  font-weight: bold;
+  color: #ced4da;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.sub-sub-timeline-title {
+  color: #6c757d;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .timeline {
+    padding-left: 20px;
+  }
+  
+  .timeline-item {
+    padding-left: 25px;
+  }
+  
+  .timeline::before {
+    left: 8px;
+  }
+  
+  .timeline-item::before {
+    left: -6px;
+    width: 10px;
+    height: 10px;
+  }
+
+  .main-timeline {
+    padding-left: 25px;
+    margin-left: 20px;
+  }
+
+  .main-timeline::before {
+    left: 10px;
+    width: 2px;
+  }
+
+  .main-timeline-item {
+    padding-left: 30px;
+  }
+
+  .main-timeline-item::before {
+    left: -8px;
+    width: 14px;
+    height: 14px;
+  }
+
+  .main-timeline-content h4 {
+    font-size: 22px;
+  }
+
+  .sub-timeline {
+    padding-left: 20px;
+    margin-left: 10px;
+  }
+
+  .sub-timeline-item {
+    padding-left: 25px;
+  }
+
+  .timeline-description p,
+  .main-timeline-content > p,
+  .tech-list p {
+    font-size: 18px;
+  }
 }
 
   </Style>
