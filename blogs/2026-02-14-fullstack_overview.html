@@ -5,8 +5,19 @@
     <title>AI Systems Stack Architecture, Cloud to Edge: A Bird’s-Eye View - Sandeep Aswath Narayana</title>
 
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="description" content="Explore the AI Systems Stack Architecture from Cloud to Edge - a comprehensive overview of modern AI infrastructure.">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://sasadep.github.io/blogs/2026-02-14-fullstack_overview.html">
+    <meta property="og:title" content="AI Systems Stack Architecture, Cloud to Edge: A Bird's-Eye View">
+    <meta property="og:description" content="Explore the AI Systems Stack Architecture from Cloud to Edge - a comprehensive overview of modern AI infrastructure.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="https://sasadep.github.io/blogs/2026-02-14-fullstack_overview.html">
+    <meta name="twitter:title" content="AI Systems Stack Architecture, Cloud to Edge: A Bird's-Eye View">
+    <meta name="twitter:description" content="Explore the AI Systems Stack Architecture from Cloud to Edge - a comprehensive overview of modern AI infrastructure.">    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Cormorant+Upright" rel="stylesheet">
 </head>
@@ -89,11 +100,11 @@ $(document).ready(function() {
 
                 <p>Across deployment contexts, the layered stack remains recognizable:</p>
 
-                <p class="stack-flow">
-                    application → frameworks → runtimes → orchestration → accelerator APIs → OS → drivers/firmware → hardware
-                </p>
+                <div class="stack-flow">
+                    <span>application</span><span class="arrow">→</span><span>frameworks</span><span class="arrow">→</span><span>runtimes</span><span class="arrow">→</span><span>orchestration</span><span class="arrow">→</span><span>accelerator APIs</span><span class="arrow">→</span><span>OS</span><span class="arrow">→</span><span>drivers/firmware</span><span class="arrow">→</span><span>hardware</span>
+                </div>
 
-                <p>What changes is <em>where complexity concentrates</em> and <em>which constraints dominate</em>: throughput vs latency, multi-tenancy vs local trust, power/thermal vs scale.</p>
+                <p>What changes is <em>where complexity concentrates</em> and <em>which constraints dominate</em>: throughput vs latency, multi-tenancy vs local/physical trust, power/thermal vs scale, and connectivity assumptions (always-connected vs intermittently connected vs fully offline).</p>
 
                 <hr>
 
@@ -143,7 +154,7 @@ $(document).ready(function() {
                         <tr>
                             <td>3) Runtimes/Compilers</td>
                             <td>TensorRT/OpenVINO/XLA/ORT EPs</td>
-                            <td>ORT EPs, OpenVINO, TFLite delegates</td>
+                            <td>ORT EPs, OpenVINO, TFLite delegates, TensorRT </td>
                             <td>Core ML, NNAPI, TFLite delegates</td>
                             <td>OpenVINO/TensorRT (where used), TFLite delegates</td>
                         </tr>
@@ -192,6 +203,8 @@ $(document).ready(function() {
                     </tbody>
                 </table>
                 </div>
+
+                <p class="table-note"><em>Note: The technologies listed (CUDA, OpenVINO, TensorRT, Core ML, etc.) are representative examples of today's popular stack components—not an exhaustive list.</em></p>
 
                 <p class="signature"><em>— Sandeep</em></p>
             </div>
@@ -317,13 +330,37 @@ $(document).ready(function() {
 }
 
 .stack-flow {
-    font-family: monospace;
-    font-size: 15px;
-    background: #f7f7f7;
-    padding: 15px 20px;
-    border-radius: 4px;
-    overflow-x: auto;
-    color: #444;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f0f0f0 100%);
+    border-radius: 6px;
+    border-left: 3px solid #495057;
+}
+
+.stack-flow span {
+    font-family: 'Cormorant Upright', Georgia, serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #495057;
+    padding: 3px 8px;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+    white-space: nowrap;
+}
+
+.stack-flow .arrow {
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    color: #999;
+    padding: 0 2px;
+    background: transparent;
+    box-shadow: none;
 }
 
 hr {
@@ -372,6 +409,13 @@ hr {
 
 .stack-table tbody tr:nth-child(even) {
     background: #fff;
+}
+
+.table-note {
+    font-size: 14px;
+    color: #777;
+    margin-top: 15px;
+    text-align: left;
 }
 
 /* Blockquote */
@@ -447,6 +491,22 @@ blockquote {
     .stack-table th:nth-child(1),
     .stack-table td:nth-child(1) {
         white-space: normal;
+    }
+
+    .stack-flow {
+        padding: 12px 10px;
+        flex-wrap: wrap;
+        gap: 6px 0;
+    }
+
+    .stack-flow span {
+        font-size: 11px;
+        padding: 2px 6px;
+    }
+
+    .stack-flow .arrow {
+        padding: 0 2px;
+        font-size: 10px;
     }
 }
 </style>
