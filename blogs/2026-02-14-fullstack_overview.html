@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Systems Stack Architecture, Cloud to Edge: A Bird’s-Eye View - Sandeep Aswath Narayana</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Upright" rel="stylesheet">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('.navbar-nav a[href^="#"]').on('click', function() {
+        if ($('.navbar-toggle').is(':visible')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+    
+    $(document).on('click', function(event) {
+        var clickover = $(event.target);
+        var _opened = $('.navbar-collapse').hasClass('in');
+        if (_opened === true && !clickover.hasClass('navbar-toggle') && clickover.parents('.navbar').length === 0) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+    
+    $(window).on('scroll', function() {
+        if ($('.navbar-toggle').is(':visible') && $('.navbar-collapse').hasClass('in')) {
+            $('.navbar-collapse').collapse('hide');
+        }
+    });
+});
+</script>
+
+<body style="overflow:hidden; margin:0; overflow-y:scroll;">
+
+    <div id="home"></div>
+
+    <!-- Navigation Bar -->
+    <nav id="custom-bootstrap-menu" class="navbar navbar-default navbar-fixed-bottom">
+        <div class="navbar-brand navbar-title navbar-left" href="../index.html"><b>Sandeep Aswath Narayana</b></div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target=".navbar-menubuilder" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse navbar-menubuilder">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../index.html#Bio"><b>Bio</b></a></li>
+                    <li><a href="../index.html#Experiences"><b>Experiences</b></a></li>
+                    <li><a href="../index.html#Projects"><b>Projects</b></a></li>
+                    <li class="active"><a href="../blogs.html"><b>Blogs</b></a></li>
+                    <li><a href="mailto:sa5641.rit@gmail.com" target="_blank"><b>Resume</b></a></li>
+                    <li><a href="../index.html#contact"><b>Contact</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Blog Content -->
+    <div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+
+        <article class="blog-article">
+            
+            <div class="blog-nav-top">
+                <a href="../blogs.html"><i class="fa fa-arrow-left"></i> Back to Blogs</a>
+            </div>
+
+            <header class="blog-header">
+                <h1>AI Systems Stack Architecture, Cloud to Edge: A Bird's-Eye View</h1>
+                <p class="blog-meta">
+                    <i class="fa fa-calendar"></i> February 14, 2026 &nbsp;&middot;&nbsp;
+                    <i class="fa fa-tags"></i> Architecture, AI, Systems
+                </p>
+            </header>
+
+            <div class="blog-content">
+
+                <p>Across deployment contexts, the layered stack remains recognizable:</p>
+
+                <p class="stack-flow">
+                    application → frameworks → runtimes → orchestration → accelerator APIs → OS → drivers/firmware → hardware
+                </p>
+
+                <p>What changes is <em>where complexity concentrates</em> and <em>which constraints dominate</em>: throughput vs latency, multi-tenancy vs local trust, power/thermal vs scale.</p>
+
+                <hr>
+
+                <h2>The Three Worlds of Compute Infrastructure</h2>
+
+                <h3><i class="fa fa-cloud"></i> Cloud / Data Centers</h3>
+                <p>Cloud's main advantage is <strong>massive, elastic compute at scale</strong>—orders of magnitude beyond any edge device. This enables large-model training, high-throughput inference, and multi-tenancy. The tradeoffs: blast-radius risk, hard requirements for isolation (GPU partitioning, quotas), high-bandwidth networking, and cluster-grade observability. Cloud-native patterns—containerization, Kubernetes, serverless—abstract infrastructure further, trading some control for scalability.</p>
+
+                <h3><i class="fa fa-desktop"></i> Desktop / Edge</h3>
+                <p>Desktop-class devices offer <strong>strong latency, privacy, and local control</strong>. Compared to mobile devices, they provide more compute headroom and better thermals. They occupy a "best of both" position for on-device AI: sufficient memory and sustained performance for inference and fine-tuning, fewer sandboxing restrictions than mobile, yet still user-controlled or enterprise-managed. Well-suited for local inference and light training, though constrained by power and compute limits relative to data centers.</p>
+
+                <h3><i class="fa fa-mobile"></i> Laptop / Mobile / Embedded / IoT</h3>
+                <p>These environments offer <strong>ultimate mobility and ubiquity</strong>—always with the user. They emphasize heterogeneous acceleration (CPU/GPU/NPU/DSP), operate under strict power/thermal budgets, and are shaped by OS sandboxing. They increasingly rely on secure-execution primitives (TEE) for sensitive workloads. Embedded/IoT tightens things further: smaller compute, real-time guarantees (RTOS), and longer deployment lifecycles.</p>
+
+                <hr>
+
+                <h2>SW Stack (Unified View)</h2>
+
+                <p>In the stack matrix below, I split the Edge world further into Desktop/Laptop vs Mobile vs IoT/Embedded because the OS and accelerator API boundaries diverge sharply.</p>
+
+                <div class="table-wrapper">
+                <table class="stack-table">
+                    <thead>
+                        <tr>
+                            <th>Layer</th>
+                            <th>Cloud (Data Center)</th>
+                            <th>Edge: Desktop/Laptop</th>
+                            <th>Edge: Mobile</th>
+                            <th>Edge: IoT/Embedded</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1) Application</td>
+                            <td>AI services, agents, RAG, batch jobs</td>
+                            <td>Local agents, interactive apps</td>
+                            <td>On-device features, assistants</td>
+                            <td>Sensor/vision/control workloads</td>
+                        </tr>
+                        <tr>
+                            <td>2) Frameworks/Libraries</td>
+                            <td>PyTorch/TF/JAX</td>
+                            <td>PyTorch/TF/ONNX</td>
+                            <td>TFLite/ONNX (mobile)</td>
+                            <td>TFLite (incl. micro), vendor SDKs</td>
+                        </tr>
+                        <tr>
+                            <td>3) Runtimes/Compilers</td>
+                            <td>TensorRT/OpenVINO/XLA/ORT EPs</td>
+                            <td>ORT EPs, OpenVINO, TFLite delegates</td>
+                            <td>Core ML, NNAPI, TFLite delegates</td>
+                            <td>OpenVINO/TensorRT (where used), TFLite delegates</td>
+                        </tr>
+                        <tr>
+                            <td>4) Compute Orchestration + Distributed Execution</td>
+                            <td>Kubernetes / Slurm / Ray (+ MPI/NCCL)</td>
+                            <td>(rare) process supervision + device mgmt; (optional) K3s/MicroK8s/Nomad/Ray (sites/fleets)</td>
+                            <td>(rare)</td>
+                            <td>(optional) K3s/MicroK8s/Nomad/Ray (sites/fleets)</td>
+                        </tr>
+                        <tr>
+                            <td>5) Accelerator API boundary</td>
+                            <td>CUDA/ROCm/oneAPI/OpenCL/</td>
+                            <td>CUDA/ROCm/oneAPI/OpenCL/ Metal/Vulkan</td>
+                            <td>NNAPI / Core ML (+ Metal/Vulkan)</td>
+                            <td>Vendor accel APIs (often behind SDKs)</td>
+                        </tr>
+                        <tr>
+                            <td>6) OS (User-space)</td>
+                            <td>Linux (+ vSphere sometimes underneath)</td>
+                            <td>Windows/macOS/Linux/ChromeOS</td>
+                            <td>Android/iOS</td>
+                            <td>Embedded Linux / RTOS</td>
+                        </tr>
+                        <tr>
+                            <td>7) Kernel + Drivers</td>
+                            <td>ioctl + device drivers</td>
+                            <td>WDDM + MCDM/IOKit/DRM(ioctl)</td>
+                            <td>HAL/Binder (Android) / IOKit (iOS)</td>
+                            <td>ioctl/DRM + BSP drivers</td>
+                        </tr>
+                        <tr>
+                            <td>8) Firmware</td>
+                            <td>UEFI/BMC + device fw</td>
+                            <td>Secure boot/TPM/TEE + device fw</td>
+                            <td>Secure boot/TEE + modem/sensor hubs</td>
+                            <td>Secure boot/TEE/MCU firmware</td>
+                        </tr>
+                        <tr>
+                            <td>9) Hardware</td>
+                            <td>CPU + GPU/NPU/TPU + fabric</td>
+                            <td>CPU + GPU/NPU</td>
+                            <td>SoC CPU+GPU+NPU/DSP</td>
+                            <td>MCU/SoC + accel (varies)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+
+                <p class="signature"><em>— Sandeep</em></p>
+            </div>
+
+            <div class="blog-nav-bottom">
+                <a href="../blogs.html"><i class="fa fa-arrow-left"></i> Back to Blogs</a>
+            </div>
+            
+            <a href="#home" class="home-button" title="Top"><i class="fa fa-arrow-up"></i></a>
+
+            <div class="blank-div"></div>
+        </article>
+    </div>
+
+</body>
+
+<style>
+/* Site theme - navbar */
+.navbar {
+    font-family: 'Cormorant Upright';
+    font-size: 20px;
+}
+
+.navbar-title {
+    font-family: 'Cormorant Upright';
+    color: #f8f9fa !important;
+    background-color: #495057;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.navbar-title:hover,
+.navbar-title:focus {
+    color: #495057 !important;
+    background-color: #f8f9fa;
+}
+
+/* Blog article */
+.blog-article {
+    max-width: 1000px;
+    padding: 30px 50px 80px;
+    background: #fff;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+}
+
+/* Navigation */
+.blog-nav-top,
+.blog-nav-bottom {
+    font-family: 'Cormorant Upright';
+}
+
+.blog-nav-top a,
+.blog-nav-bottom a {
+    color: #495057;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.blog-nav-top a:hover,
+.blog-nav-bottom a:hover {
+    text-decoration: underline;
+}
+
+.blog-nav-bottom {
+    margin-top: 50px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+}
+
+/* Header */
+.blog-header {
+    margin: 40px 0 35px;
+}
+
+.blog-header h1 {
+    font-family: 'Cormorant Upright';
+    font-size: 36px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.blog-meta {
+    color: #888;
+    font-size: 14px;
+    font-family: 'Cormorant Upright';
+}
+
+/* Content */
+.blog-content h2 {
+    font-family: 'Cormorant Upright';
+    font-size: 26px;
+    color: #333;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.blog-content h3 {
+    font-family: 'Cormorant Upright';
+    font-size: 20px;
+    color: #444;
+    margin-top: 30px;
+    margin-bottom: 12px;
+}
+
+.blog-content h3 i {
+    margin-right: 8px;
+    color: #495057;
+}
+
+.blog-content p {
+    margin-bottom: 20px;
+}
+
+.lead {
+    font-size: 20px;
+    color: #555;
+    font-style: italic;
+}
+
+.stack-flow {
+    font-family: monospace;
+    font-size: 15px;
+    background: #f7f7f7;
+    padding: 15px 20px;
+    border-radius: 4px;
+    overflow-x: auto;
+    color: #444;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 40px 0;
+}
+
+/* Stack Table - full width breakout */
+.table-wrapper {
+    margin: 30px -50px;
+    padding: 0 50px;
+    width: calc(100% + 100px);
+}
+
+.stack-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+}
+
+.stack-table th,
+.stack-table td {
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+}
+
+.stack-table th:nth-child(1),
+.stack-table td:nth-child(1) {
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.stack-table thead th {
+    background: #495057;
+    color: #fff;
+    font-family: 'Cormorant Upright';
+    font-weight: bold;
+}
+
+.stack-table tbody tr:nth-child(odd) {
+    background: #f9f9f9;
+}
+
+.stack-table tbody tr:nth-child(even) {
+    background: #fff;
+}
+
+/* Blockquote */
+blockquote {
+    border-left: 3px solid #495057;
+    margin: 30px 0;
+    padding: 15px 25px;
+    background: #fafafa;
+    font-style: italic;
+    color: #555;
+}
+
+.signature {
+    margin-top: 40px;
+    color: #666;
+}
+
+/* Home button */
+.home-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #495057;
+    color: #fff !important;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: 0.2s;
+}
+
+.home-button:hover {
+    background: #333;
+    text-decoration: none;
+    color: #fff !important;
+}
+
+.blank-div {
+    height: 80px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .blog-article {
+        padding: 20px 15px 70px;
+        font-size: 17px;
+    }
+
+    .blog-header h1 {
+        font-size: 28px;
+    }
+
+    .blog-content h2 {
+        font-size: 22px;
+    }
+
+    .table-wrapper {
+        margin: 30px -15px;
+        padding: 0 15px;
+        width: calc(100% + 30px);
+    }
+
+    .stack-table {
+        font-size: 10px;
+    }
+
+    .stack-table th,
+    .stack-table td {
+        padding: 5px 6px;
+    }
+
+    .stack-table th:nth-child(1),
+    .stack-table td:nth-child(1) {
+        white-space: normal;
+    }
+}
+</style>
+
+</html>
